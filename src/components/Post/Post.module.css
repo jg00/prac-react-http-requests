@@ -1,0 +1,20 @@
+.Post {
+  width: 100px;
+  padding: 16px;
+  text-align: center;
+  border: 1px dotted orchid;
+  box-shadow: 5px 5px 5px 2px #ccc;
+  margin: 10px;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+.Post:hover,
+.Post:active {
+  background-color: orchid;
+}
+
+.Author {
+  margin: 16px 0;
+  color: #ccc;
+}
