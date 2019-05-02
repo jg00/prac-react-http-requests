@@ -8,6 +8,9 @@ class Blog extends Component {
   render() {
     return (
       <div>
+        <header>
+          <h1>Blogging</h1>
+        </header>
         <section className={classes.Posts}>
           <Post />
           <Post />

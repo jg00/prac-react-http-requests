@@ -36,8 +36,8 @@ export class NewPost extends Component {
           value={this.state.author}
           onChange={event => this.textChangeHandler(event, "author")}
         >
-          <option value="Max">Max</option>
-          <option value="Manu">Manu</option>
+          <option value="Malone">Malone</option>
+          <option value="Sid">Sid</option>
         </select>
         <button>Add Post</button>
       </div>
