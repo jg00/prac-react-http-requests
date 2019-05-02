@@ -4,6 +4,7 @@
   border: 1px solid orchid;
   box-shadow: 0 2px 3px #ccc;
   text-align: center;
+  border-radius: 15px;
 }
 
 .Edit label {
@@ -26,6 +27,7 @@
 
 .Edit button.Delete {
   color: red;
+  padding: 0 0 16px 0;
 }
 
 .Edit button.Delete:hover,

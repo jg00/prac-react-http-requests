@@ -3,10 +3,11 @@
   padding: 16px;
   text-align: center;
   border: 1px dotted orchid;
-  box-shadow: 5px 5px 5px 2px #ccc;
+  box-shadow: 5px 5px 5px 2px orchid;
   margin: 10px;
   box-sizing: border-box;
   cursor: pointer;
+  border-radius: 15px;
 }
 
 .Post:hover,
