@@ -1,5 +1,5 @@
 .Post {
-  width: 100px;
+  width: 200px;
   padding: 16px;
   text-align: center;
   border: 1px dotted orchid;
@@ -8,6 +8,7 @@
   box-sizing: border-box;
   cursor: pointer;
   border-radius: 15px;
+  font-size: 0.75rem;
 }
 
 .Post:hover,

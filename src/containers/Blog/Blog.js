@@ -6,22 +6,31 @@ import FullPost from "../../components/FullPost/FullPost";
 import NewPost from "../../components/NewPost/NewPost";
 
 class Blog extends Component {
+  state = {
+    posts: []
+  };
+
   componentDidMount() {
     axios.get("https://jsonplaceholder.typicode.com/posts").then(response => {
-      console.log(response);
+      this.setState({
+        posts: response.data
+      });
     });
   }
 
   render() {
+    // Posts
+    const posts = this.state.posts.map(post => {
+      return <Post key={post.id} title={post.title} />;
+    });
+
     return (
       <div>
         <header>
           <h1>Blogging</h1>
         </header>
         <section className={classes.Posts}>
-          <Post />
-          <Post />
-          <Post />
+          {posts}>{posts}
         </section>
         <section>
           <FullPost />
