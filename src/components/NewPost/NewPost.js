@@ -19,7 +19,8 @@ export class NewPost extends Component {
     axios
       .post("https://jsonplaceholder.typicode.com/posts", data)
       .then(response => {
-        console.log(response.data);
+        // console.log(response.data);
+        alert("Post request sent to /posts");
       });
   };
 
