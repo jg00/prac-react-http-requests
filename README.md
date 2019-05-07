@@ -1,10 +1,13 @@
-## React App - HTTP Requests (In progress)
+## React App - HTTP Requests (in progress)
 
-Create a simple React app and reach out to the web via Axios package.
+Created a simple React app to reach out to the web via Axios package.
+Used JSONPlaceholder free online REST API to work with fake data.
 
 ## Below are a few basic features applied to this app.
 
-- Use Axios package.
+- The app initially pulls all posts from the API and displays only four for demo.
+- New post request can be sent to the JSONPlaceholder API (Only produces a response for demo).
+- Delete post request can be sent to the JSONPlaceholder API (Only produces a response for demo).
 
 ## Technologies
 
