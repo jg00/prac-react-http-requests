@@ -15,7 +15,7 @@ class Blog extends Component {
   componentDidMount() {
     // Limit posts; Add "author" property placeholder b/c jsonplaceholder does not include author data.
     axios
-      .get("https://jsonplaceholder.typicode.com/posts")
+      .get("/posts")
       .then(response => {
         const posts = response.data.slice(0, 4);
         const updatedPosts = posts.map(post => {
@@ -56,7 +56,7 @@ class Blog extends Component {
     return (
       <div>
         <header>
-          <h1>Blogging</h1>
+          <h1>HTTP Requests</h1>
         </header>
         <section className={classes.Posts}>{posts}</section>
         <section>

@@ -16,12 +16,14 @@ export class NewPost extends Component {
       author: this.state.author
     };
 
-    axios
-      .post("https://jsonplaceholder.typicode.com/posts", data)
-      .then(response => {
-        // console.log(response.data);
-        alert("Post request sent to /posts");
-      });
+    axios.post("/posts", data).then(response => {
+      // console.log(response.data);
+      alert(
+        `Post request sent to /posts.
+           id: ${response.data.id} 
+           title: ${response.data.title}`
+      );
+    });
   };
 
   textChangeHandler = (event, element) => {
