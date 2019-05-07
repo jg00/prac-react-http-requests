@@ -5,12 +5,12 @@ import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import axios from "axios";
 
-/***** axios.defaults object *****/
+/***** axios.defaults object (global) *****/
 axios.defaults.baseURL = "https://jsonplaceholder.typicode.com";
 axios.defaults.headers.common["Authorization"] = "AUTH TOKEN";
 axios.defaults.headers.post["Content-Type"] = "application/json";
 
-/***** axios.interceptors object *****/
+/***** axios.interceptors object (global) *****/
 // Functions you can define globally and are executed for every http request/response
 // You can intercept requests or responses before they are handled by then or catch.
 // Useful for setting common headers like authorization, logging responses, handle errors, etc.

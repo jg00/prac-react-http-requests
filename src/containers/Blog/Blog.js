@@ -1,5 +1,8 @@
 import React, { Component } from "react";
-import axios from "axios";
+
+// import axios from "axios";
+import axios from "../../axios";
+
 import classes from "./Blog.module.css";
 import Post from "../../components/Post/Post";
 import FullPost from "../../components/FullPost/FullPost";
@@ -56,7 +59,7 @@ class Blog extends Component {
     return (
       <div>
         <header>
-          <h1>HTTP Requests</h1>
+          <h1 style={{ color: "Purple" }}>Simple Blogging</h1>
         </header>
         <section className={classes.Posts}>{posts}</section>
         <section>
