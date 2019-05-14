@@ -1,4 +1,4 @@
-## React App - HTTP Requests (in progress)
+## React App - HTTP Requests
 
 Created a simple React app to reach out to the web via Axios package.
 Used JSONPlaceholder free online REST API to work with fake data.
