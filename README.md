@@ -3,7 +3,7 @@
 Created a simple React app to reach out to the web via Axios package.
 Used JSONPlaceholder free online REST API to work with fake data.
 
-<a href="http://ajax-jg.surge.sh" target="_blank"><img src="https://user-images.githubusercontent.com/43181662/57722990-47c28300-764d-11e9-8cf2-ec49e06d08ad.png" title="Ajax"/></a>
+<a href="http://ajax-jg.surge.sh" target="_blank"><img width="374" alt="simple blogging"  src="https://user-images.githubusercontent.com/43181662/57722990-47c28300-764d-11e9-8cf2-ec49e06d08ad.png" title="Ajax"/></a>
 <br><a href="http://ajax-jg.surge.sh" target="_blank">HTTP Requests Site</a>
 
 ## Below are a few basic features applied to this app.
