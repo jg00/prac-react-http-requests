@@ -57,14 +57,30 @@ class Blog extends Component {
     }
 
     return (
-      <div>
+      <div className={classes.Blog}>
         <header>
           <h1 style={{ color: "Purple" }}>Simple Blogging</h1>
         </header>
+
+        <header>
+          <nav>
+            <ul>
+              <li>
+                <a href="/">Home</a>
+              </li>
+              <li>
+                <a href="/new-post">New Post</a>
+              </li>
+            </ul>
+          </nav>
+        </header>
+
         <section className={classes.Posts}>{posts}</section>
+
         <section>
           <FullPost id={this.state.selectedPostId} />
         </section>
+
         <section>
           <NewPost />
         </section>
