@@ -1,12 +1,17 @@
-import React from "react";
+import React, { Component } from "react";
+import { BrowserRouter } from "react-router-dom";
 import Blog from "../src/containers/Blog/Blog";
 
-function App() {
-  return (
-    <div className="App">
-      <Blog />
-    </div>
-  );
+class App extends Component {
+  render() {
+    return (
+      <BrowserRouter>
+        <div className="App">
+          <Blog />
+        </div>
+      </BrowserRouter>
+    );
+  }
 }
 
 export default App;
