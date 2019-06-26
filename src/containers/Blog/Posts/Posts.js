@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "../../../axios";
+import { Link } from "react-router-dom";
 
 import Post from "../../../components/Post/Post";
 import classes from "./Posts.module.css";
@@ -7,10 +8,12 @@ import classes from "./Posts.module.css";
 class Posts extends Component {
   state = {
     posts: []
+    // selectedPostId: null, // I think this is still needed here
+    // error: false
   };
 
   componentDidMount() {
-    // CONTINUE HERE
+    console.log("Posts.js-componentDidMount", this.props); // this.props here is passed by react-router. Note you can further pass this down to subcomponets.  See below using ...this.props.
 
     // Limit posts; Add "author" property placeholder b/c jsonplaceholder does not include author data.
     axios
@@ -43,12 +46,16 @@ class Posts extends Component {
     if (!this.state.error) {
       posts = this.state.posts.map(post => {
         return (
-          <Post
-            key={post.id}
-            title={post.title}
-            author={post.author}
-            clicked={() => this.postSelectedHandler(post.id)}
-          />
+          <Link to={"/" + post.id} key={post.id}>
+            <Post
+              // key={post.id}
+              title={post.title}
+              author={post.author}
+              // {...this.props} // One way to pass react-router props to sub components or we can use a HOC on Post component (withRouter).
+              // match = {this.props.match} // Another way if you want to target certain props.
+              clicked={() => this.postSelectedHandler(post.id)} // Now need to pass 'id' as part of the url
+            />
+          </Link>
         );
       });
     }

@@ -9,6 +9,10 @@ export class NewPost extends Component {
     author: ""
   };
 
+  componentDidMount() {
+    console.log("NewPost.js-componentDidMount", this.props); // this.props here is passed by react-router
+  }
+
   postDataHandler = () => {
     const data = {
       title: this.state.title,

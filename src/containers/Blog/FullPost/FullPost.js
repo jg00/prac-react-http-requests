@@ -7,17 +7,21 @@ export class FullPost extends Component {
     loadedPost: null
   };
 
-  // Capture post by id
-  componentDidUpdate() {
+  // Capture post by id.  Use mount b/c we are not updating.  We are adding to and from the DOM.
+  componentDidMount() {
+    console.log("FullPost.js_componentDidMount", this.props);
+
     // Send http request only if we want to load a new post
-    if (this.props.id) {
+    // if (this.props.id) { // for previous version
+    if (this.props.match.params.id) {
       /* 1 If we initially do not have a loadedPost ie null
          2 or If we do have a loadedPost and current loadedPost.id not equal to new props.id (ie different)*/
       if (
         !this.state.loadedPost ||
-        (this.state.loadedPost && this.state.loadedPost.id !== this.props.id)
+        (this.state.loadedPost &&
+          this.state.loadedPost.id !== this.props.match.params.id)
       ) {
-        axios.get(`/posts/${this.props.id}`).then(response => {
+        axios.get(`/posts/${this.props.match.params.id}`).then(response => {
           this.setState({
             loadedPost: response.data
           });
