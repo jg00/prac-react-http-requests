@@ -1,15 +1,18 @@
 import React, { Component } from "react";
 import axios from "axios";
 import classes from "./NewPost.module.css";
+// import { Redirect } from "react-router-dom";
 
 export class NewPost extends Component {
   state = {
     title: "",
     content: "",
-    author: ""
+    author: "",
+    submitted: false
   };
 
   componentDidMount() {
+    // if unauthenticated => this.props.history.replace('/posts') << This is another way to guard user from accessing this page.
     console.log("NewPost.js-componentDidMount", this.props); // this.props here is passed by react-router
   }
 
@@ -21,10 +24,21 @@ export class NewPost extends Component {
     };
 
     axios.post("/posts", data).then(response => {
-      // console.log(response.data);
+      console.log(response.data);
+
+      // One way to redirect to another page
+      // To render <Redirect conditionally based on state
+      // this.setState({
+      //   submitted: true
+      // });
+
+      // May be all we need is to add to the history stack
+      this.props.history.push("/posts");
+      // this.props.history.replace("/posts");  // Works as well but you don't go back the previous page of the history stack
+
       alert(
         `Post request sent to /posts.
-           id: ${response.data.id} 
+           id: ${response.data.id}
            title: ${response.data.title}`
       );
     });
@@ -37,8 +51,15 @@ export class NewPost extends Component {
   };
 
   render() {
+    // Alternate is to use this.props.history.push('/posts') to add to the history stack
+    // let redirect = null;
+    // if (this.state.submitted) {
+    //   redirect = <Redirect to="/posts" />;
+    // }
+
     return (
       <div className={classes.NewPost}>
+        {/* {redirect} */}
         <h1>Add a Post</h1>
         <label>Title</label>
         <input

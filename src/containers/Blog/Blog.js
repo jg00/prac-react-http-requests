@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import classes from "./Blog.module.css";
 
 // import { Route, Link } from "react-router-dom"; // Commented for reference.  Link replaced with NavLink.
-import { Route, NavLink, Switch } from "react-router-dom"; // NavLink have extra props that allow us to define some extra styling.
+import { Route, NavLink, Switch, Redirect } from "react-router-dom"; // NavLink have extra props that allow us to define some extra styling.
 
 // import axios from "axios";
 // import axios from "../../axios";
@@ -16,6 +16,10 @@ import NewPost from "./NewPost/NewPost";
 // import NewPost from "../../components/NewPost/NewPost";
 
 class Blog extends Component {
+  state = {
+    auth: false
+  };
+
   render() {
     return (
       <div className={classes.Blog}>
@@ -70,9 +74,17 @@ class Blog extends Component {
         {/* /:id is interpreted as any value after the slash / */}
         <Switch>
           {/* <Route path="/" exact component={Posts} /> We needed to remove 'exact' to get the nested route to work */}
-          <Route path="/new-post" component={NewPost} />
+          {/* Adding a route guard */}
+          {this.state.auth ? (
+            <Route path="/new-post" component={NewPost} />
+          ) : null}
+
           <Route path="/posts" component={Posts} />
           {/* <Route path="/:id" exact component={FullPost} /> */}
+
+          {/* <Route path="/" component={Posts} />  One way to direct to '/' path.  Another way is to use <Redirect>*/}
+          {/* <Redirect "from=" can only be used inside <Switch> else only use "to=" property */}
+          <Redirect from="/" to="/posts" />
         </Switch>
 
         {/* <Posts /> */}
