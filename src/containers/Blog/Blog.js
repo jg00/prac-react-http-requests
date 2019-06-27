@@ -9,7 +9,7 @@ import { Route, NavLink, Switch } from "react-router-dom"; // NavLink have extra
 
 import Posts from "./Posts/Posts";
 import NewPost from "./NewPost/NewPost";
-import FullPost from "./FullPost/FullPost";
+// import FullPost from "./FullPost/FullPost";
 
 // import Post from "../../components/Post/Post";
 // import FullPost from "../../components/FullPost/FullPost";
@@ -26,7 +26,7 @@ class Blog extends Component {
             <ul>
               <li>
                 <NavLink
-                  to="/"
+                  to="/posts/"
                   exact // Need to add 'exact' because react also treats these to='/' as prefixes
                   activeClassName={classes.active}
                   // activeStyle={{
@@ -34,7 +34,7 @@ class Blog extends Component {
                   //   textDecoration: "underline"
                   // }}
                 >
-                  Home
+                  Posts
                 </NavLink>
                 {/* <a href="/">Home</a> */}
               </li>
@@ -68,10 +68,11 @@ class Blog extends Component {
         {/* <Route path="/" exact render={() => <h1>Home</h1>} /> */}
         {/* <Route path="/" render={() => <h1>Home 2</h1>} /> */}
         {/* /:id is interpreted as any value after the slash / */}
-        <Route path="/" exact component={Posts} />
         <Switch>
+          {/* <Route path="/" exact component={Posts} /> We needed to remove 'exact' to get the nested route to work */}
           <Route path="/new-post" component={NewPost} />
-          <Route path="/:id" exact component={FullPost} />
+          <Route path="/posts" component={Posts} />
+          {/* <Route path="/:id" exact component={FullPost} /> */}
         </Switch>
 
         {/* <Posts /> */}

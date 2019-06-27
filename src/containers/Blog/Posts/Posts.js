@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import axios from "../../../axios";
 // import { Link } from "react-router-dom"; // One way to navigate after clicking one of Posts.
+import { Route } from "react-router-dom";
 
 import Post from "../../../components/Post/Post";
+import FullPost from "../FullPost/FullPost";
 import classes from "./Posts.module.css";
 
 class Posts extends Component {
@@ -35,17 +37,18 @@ class Posts extends Component {
   }
 
   postSelectedHandler = id => {
-    this.props.history.push({ pathname: "/" + id });
-    // this.props.history.push('/' + id)
+    // this.props.history.push({ pathname: "/posts/" + id });
+    this.props.history.push("/posts/" + id);
   };
 
   render() {
+    // console.log(this.props.match.url);  > /posts
     let posts = <p style={{ textAlign: "center" }}>Post Section Error!</p>;
 
     if (!this.state.error) {
       posts = this.state.posts.map(post => {
         return (
-          // <Link to={"/" + post.id} key={post.id}>  // For Link example
+          // <Link to={"/posts/" + post.id} key={post.id}>  // For Link example
           <Post
             key={post.id}
             title={post.title}
@@ -59,7 +62,18 @@ class Posts extends Component {
       });
     }
 
-    return <section className={classes.Posts}>{posts}</section>;
+    return (
+      <div>
+        <section className={classes.Posts}>{posts}</section>
+        <Route
+          // path="/:id"
+          // path="/posts/:id"
+          path={this.props.match.url + "/:id"}
+          exact
+          component={FullPost}
+        />
+      </div>
+    );
   }
 }
 
