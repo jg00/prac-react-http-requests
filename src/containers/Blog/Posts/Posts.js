@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from "../../../axios";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom"; // One way to navigate after clicking one of Posts.
 
 import Post from "../../../components/Post/Post";
 import classes from "./Posts.module.css";
@@ -35,9 +35,8 @@ class Posts extends Component {
   }
 
   postSelectedHandler = id => {
-    this.setState({
-      selectedPostId: id
-    });
+    this.props.history.push({ pathname: "/" + id });
+    // this.props.history.push('/' + id)
   };
 
   render() {
@@ -46,16 +45,16 @@ class Posts extends Component {
     if (!this.state.error) {
       posts = this.state.posts.map(post => {
         return (
-          <Link to={"/" + post.id} key={post.id}>
-            <Post
-              // key={post.id}
-              title={post.title}
-              author={post.author}
-              // {...this.props} // One way to pass react-router props to sub components or we can use a HOC on Post component (withRouter).
-              // match = {this.props.match} // Another way if you want to target certain props.
-              clicked={() => this.postSelectedHandler(post.id)} // Now need to pass 'id' as part of the url
-            />
-          </Link>
+          // <Link to={"/" + post.id} key={post.id}>  // For Link example
+          <Post
+            key={post.id}
+            title={post.title}
+            author={post.author}
+            // {...this.props} // One way to pass react-router props to sub components or we can use a HOC on Post component (withRouter).
+            // match = {this.props.match} // Another way if you want to target certain props.
+            clicked={() => this.postSelectedHandler(post.id)} // Now need to pass 'id' as part of the url
+          />
+          // </Link>
         );
       });
     }

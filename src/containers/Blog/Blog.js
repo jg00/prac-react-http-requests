@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import classes from "./Blog.module.css";
 
 // import { Route, Link } from "react-router-dom"; // Commented for reference.  Link replaced with NavLink.
-import { Route, NavLink } from "react-router-dom"; // NavLink have extra props that allow us to define some extra styling.
+import { Route, NavLink, Switch } from "react-router-dom"; // NavLink have extra props that allow us to define some extra styling.
 
 // import axios from "axios";
 // import axios from "../../axios";
@@ -27,7 +27,7 @@ class Blog extends Component {
               <li>
                 <NavLink
                   to="/"
-                  exact
+                  exact // Need to add 'exact' because react also treats these to='/' as prefixes
                   activeClassName={classes.active}
                   // activeStyle={{
                   //   color: "#fa923f",
@@ -64,12 +64,15 @@ class Blog extends Component {
         </header>
 
         {/* Key here is we want to now render a component page depending on the path in the url */}
+        {/* Note thate react-router sees any value string in path as a 'prefix'. */}
         {/* <Route path="/" exact render={() => <h1>Home</h1>} /> */}
         {/* <Route path="/" render={() => <h1>Home 2</h1>} /> */}
-
+        {/* /:id is interpreted as any value after the slash / */}
         <Route path="/" exact component={Posts} />
-        <Route path="/new-post" component={NewPost} />
-        <Route path="/:id" exact component={FullPost} />
+        <Switch>
+          <Route path="/new-post" component={NewPost} />
+          <Route path="/:id" exact component={FullPost} />
+        </Switch>
 
         {/* <Posts /> */}
 
