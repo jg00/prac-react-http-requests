@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import classes from "./Blog.module.css";
 
 // import { Route, Link } from "react-router-dom"; // Commented for reference.  Link replaced with NavLink.
-import { Route, NavLink, Switch, Redirect } from "react-router-dom"; // NavLink have extra props that allow us to define some extra styling.
+// import { Route, NavLink, Switch, Redirect } from "react-router-dom"; // NavLink have extra props that allow us to define some extra styling.
+import { Route, NavLink, Switch } from "react-router-dom"; // NavLink have extra props that allow us to define some extra styling.
 
 // import axios from "axios";
 // import axios from "../../axios";
@@ -16,8 +17,9 @@ import NewPost from "./NewPost/NewPost";
 // import NewPost from "../../components/NewPost/NewPost";
 
 class Blog extends Component {
+  // auth: true will give access to NewPost component via the '/posts' path.
   state = {
-    auth: false
+    auth: true
   };
 
   render() {
@@ -84,7 +86,12 @@ class Blog extends Component {
 
           {/* <Route path="/" component={Posts} />  One way to direct to '/' path.  Another way is to use <Redirect>*/}
           {/* <Redirect "from=" can only be used inside <Switch> else only use "to=" property */}
-          <Redirect from="/" to="/posts" />
+          {/* <Redirect from="/" to="/posts" /> */}
+
+          {/* Commented out <Redirect from='/'..> because '/' will also catch all routes
+              (otherwise you can still use Redirect and Route together).
+              You can then use Route below to handle unknown paths.*/}
+          <Route render={() => <h1>Not found</h1>} />
         </Switch>
 
         {/* <Posts /> */}
