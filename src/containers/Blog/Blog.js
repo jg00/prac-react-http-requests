@@ -91,7 +91,7 @@ class Blog extends Component {
           {/* Commented out <Redirect from='/'..> because '/' will also catch all routes
               (otherwise you can still use Redirect and Route together).
               You can then use Route below to handle unknown paths.*/}
-          <Route render={() => <h1>Not found</h1>} />
+          <Route render={() => <h1>Page not found</h1>} />
         </Switch>
 
         {/* <Posts /> */}
