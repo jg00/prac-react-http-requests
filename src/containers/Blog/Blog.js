@@ -9,8 +9,30 @@ import { Route, NavLink, Switch } from "react-router-dom"; // NavLink have extra
 // import axios from "../../axios";
 
 import Posts from "./Posts/Posts";
-import NewPost from "./NewPost/NewPost";
 // import FullPost from "./FullPost/FullPost";
+
+/* 
+  Lazy load NewPost component
+  - When importing, you inform webpack about this dependency and will include it in the global bundle.js.
+  - For lazy loading we do not want to include the component in the bundle, we want to load it when needed.
+  - Still webpack needs to be able to dynamically prepare some extra bundle for this potentially loaded code.
+  - We use import keyword as a function, a dynamic import, which means, whatever comes between the parentheses, 
+    'is only imported when the containing function (ie asyncComponent()) is
+    executed'.
+  - (Important Summary) Webpack will create an extra bundle (ex: 1.chunk.js) b/c 'while' bundling the code, it detected this
+    import('./NewPost/NewPost) code, and therefore created the extra bundle along with all potential child
+    components that are exclusive to that component if any.  
+    Important - But it didn't add it to the main bundle.js, instead it's 'prepared a smaller bundle to
+    load it when needed' when we actually include AsyncNewPost which we only do 'when
+    we navigate to <Route path='/new-post' component={AsyncNewPost} />.
+*/
+
+// import NewPost from "./NewPost/NewPost"; // Commented and use lazy loading below
+
+import asyncComponent from "../../hoc/asyncComponent";
+const AsyncNewPost = asyncComponent(() => {
+  return import("./NewPost/NewPost"); // *We decide which component should be dynamically loaded with this function we pass to asyncComponent
+});
 
 // import Post from "../../components/Post/Post";
 // import FullPost from "../../components/FullPost/FullPost";
@@ -78,7 +100,8 @@ class Blog extends Component {
           {/* <Route path="/" exact component={Posts} /> We needed to remove 'exact' to get the nested route to work */}
           {/* Adding a route guard */}
           {this.state.auth ? (
-            <Route path="/new-post" component={NewPost} />
+            // <Route path="/new-post" component={NewPost} /> // Replaced with lazy loaded component
+            <Route path="/new-post" component={AsyncNewPost} />
           ) : null}
 
           <Route path="/posts" component={Posts} />
